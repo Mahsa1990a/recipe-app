@@ -1,4 +1,4 @@
-<a href="#" class="list-group-item clearfix">
+<a href="#" class="list-group-item clearfix" (click)="onSelected()">
   <!-- get rid of *ngFor here and move it back to recipe-list template and then pass each item of iteration into this template-->
   <div class="pull-left">
     <h4 class="list-group-item-heading">
@@ -8,6 +8,11 @@
   </div>
   <span class="pull-right">
     <!-- <img src="{{ recipe.imagePath }}" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 50px;">  OR:-->
-    <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 50px" />
+    <img
+      [src]="recipe.imagePath"
+      alt="{{ recipe.name }}"
+      class="img-responsive"
+      style="max-height: 50px"
+    />
   </span>
 </a>

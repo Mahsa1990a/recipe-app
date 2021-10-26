@@ -28,3 +28,15 @@ export class AppComponent {
 // 2.cut *ngFor loop from recipe-item into recipe-list template
 // 3.add recipe property in recipe-item ts and make it bindable from outside(means recipe-item) with @Input
 // 4.now in recipe-list template bind into recipe property and equal it into item of our for loop
+
+// 88. Passing Data with Event and Property Binding (Combined)
+// Click on single recipe on browser and load it on recipe-detail section
+// emit an event on recipe-item that it was clicked
+// listen to recipeSelected event in recipe-list template and here need to emit to another event onRecipeSelected
+// add recipeEl into onRecipeSelected as an argument in tempalet
+// add the emit to event in recipe-list component ts
+// recipes template add event here
+//  then pass this info into recipe-detail(inside recipes template) first:
+// add ngIf to recipe-detail
+// and get this event to recipes component that holds recipe-detail
+// to pass down the event data which recipe was selected to that component
