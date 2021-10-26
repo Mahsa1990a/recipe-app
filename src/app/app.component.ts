@@ -40,3 +40,12 @@ export class AppComponent {
 // add ngIf to recipe-detail
 // and get this event to recipes component that holds recipe-detail
 // to pass down the event data which recipe was selected to that component
+
+// 90. Allowing the User to Add Ingredients to the Shopping List
+// shopping-edit template add local refrence #nameInput for Input name and same for number Input
+// adding even (click)="onAddItem()" in shopping-edit template
+// in shopping-edit ts add 2 properties with viewChild
+//now in onAddItem we want to emit a new event where I pass data to the parent(shopping-list)
+//which manages my arr of ingridents
+// let's listen to ingredientAdded event in shopping-list template and it;s value = onIngredientAdded
+//create methode onIngredientAdded on shopping-list ts
