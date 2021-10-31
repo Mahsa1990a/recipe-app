@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
+import { ShoppingListService } from '../shoppingList.service';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -18,9 +19,9 @@ export class ShoppingEditComponent implements OnInit {
   //which manages my arr of ingridents:
   // {name: string, amount: number} this is type definition => obj with 2 keys
   // ingredientAdded = new EventEmitter<{name: string, amount: number}>(); OR we have the seme type definition with Ingredient Model:
-  @Output() ingredientAdded = new EventEmitter<Ingredient>();
+  // @Output() ingredientAdded = new EventEmitter<Ingredient>();
 
-  constructor() { }
+  constructor(private shoppingListServiceProp: ShoppingListService) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +35,8 @@ export class ShoppingEditComponent implements OnInit {
     const newIngredient = new Ingredient(ingName, ingAmount);
     // console.log("newIngredient", newIngredient) is working
 
-    this.ingredientAdded.emit(newIngredient);
+    // this.ingredientAdded.emit(newIngredient); UPDATE:
+    this.shoppingListServiceProp.addIngredient(newIngredient);
   }
 
 }
