@@ -1,8 +1,12 @@
 // managing recipes and datas
 
+import { EventEmitter } from '@angular/core';
 import { Recipe } from "./recipe.model";
 
 export class RecipeService {
+
+  recipeSelected = new EventEmitter<Recipe>()
+
   // the type is Recipe Model
   private recipes: Recipe[] = [
     //create a new obj based on our Recipe class:
@@ -13,5 +17,9 @@ export class RecipeService {
   getRecipes() {
     return this.recipes.slice(); //this will return new arr which is copy of this arr in this service
     // So with this ^ we get a copy of recipes arr for using outside
+  }
+
+  recipeSelectedMethod(recipe) {
+    this.recipeSelected.emit(recipe);
   }
 }

@@ -13,9 +13,18 @@ export class RecipesComponent implements OnInit {
 
   selectedRecipe: Recipe;
 
-  constructor() { }
+  // Inject the service:
+  constructor(private recipeServiceProp: RecipeService) { }
 
   ngOnInit(): void {
+    this.recipeServiceProp.recipeSelected //subscribe to it and get informed about any change
+    .subscribe(
+      // recipe is argument and => {} is function body:
+      (recipe: Recipe) => {
+        this.selectedRecipe = recipe;
+      }
+    );
+
   }
 
 }

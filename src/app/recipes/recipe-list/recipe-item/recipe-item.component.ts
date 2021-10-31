@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { RecipeService } from '../../recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -11,14 +12,17 @@ export class RecipeItemComponent implements OnInit {
   // bind this property from outside
   @Input() recipe: Recipe;
   // it contains no information so ========> <void>
-  @Output() recipeSelected = new EventEmitter<void>();
+  // @Output() recipeSelected = new EventEmitter<void>(); don't want to emit but:
+  // want to call some methods in service, which will then transfert this data
 
-  constructor() { }
+  // Inject recipe service:
+  constructor(private recipeServiceProp: RecipeService) { }
 
   ngOnInit(): void {
   }
 
   onSelected() {
-    this.recipeSelected.emit();
+    // this.recipeSelected.emit();
+    this.recipeServiceProp.recipeSelectedMethod(this.recipe);
   }
 }
