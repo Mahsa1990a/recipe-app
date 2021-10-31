@@ -25,4 +25,14 @@ export class ShoppingListService {
     this.ingredientChanged.emit(this.ingredients.slice()); //then add it in shopping list component
   }
 
+  // let's create this: for recipe service
+  addIngredients(ingredients: Ingredient[]) {
+    // for (let ingredient of ingredients) {
+    //   this.addIngredient(ingredient);
+    // }         OR:
+    // speared operator: turns an arr of element into a list of elements
+    this.ingredients.push(...ingredients);
+    this.ingredientChanged.emit(this.ingredients.slice());
+  }
+
 }

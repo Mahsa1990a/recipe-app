@@ -1,8 +1,12 @@
 // managing recipes and datas
 
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shoppingList.service';
 import { Recipe } from "./recipe.model";
+
+// need to access shopping list service
+@Injectable()
 
 export class RecipeService {
 
@@ -32,6 +36,8 @@ export class RecipeService {
     )
   ];
 
+  constructor(private shoppingListServiceProp: ShoppingListService) {}
+
   getRecipes() {
     return this.recipes.slice(); //this will return new arr which is copy of this arr in this service
     // So with this ^ we get a copy of recipes arr for using outside
@@ -39,5 +45,10 @@ export class RecipeService {
 
   recipeSelectedMethod(recipe) {
     this.recipeSelected.emit(recipe);
+  }
+
+  addIngredinetsToShoppingList(ingredients: Ingredient[]) {
+    // need to access shopping list service
+    this.shoppingListServiceProp.addIngredients(ingredients);
   }
 }
