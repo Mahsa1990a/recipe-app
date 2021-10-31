@@ -20,6 +20,15 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.ingredients = this.shoppingListServiceProp.getIngredients();
+
+    // so after this ^ we need to access service and subscribe to that  ingredientChanged enevt:
+    this.shoppingListServiceProp.ingredientChanged
+    .subscribe(
+      // whenever ingredinets changs =>
+      (ingredientsss: Ingredient[]) => {
+        this.ingredients = ingredientsss
+      }
+    )
   }
 
   // onIngredientAdded(ingredient: Ingredient) {

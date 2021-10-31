@@ -36,7 +36,7 @@ export class ShoppingEditComponent implements OnInit {
     // console.log("newIngredient", newIngredient) is working
 
     // this.ingredientAdded.emit(newIngredient); UPDATE:
-    this.shoppingListServiceProp.addIngredient(newIngredient);
+    this.shoppingListServiceProp.addIngredient(newIngredient); //it does not show added ingredient
   }
 
 }

@@ -1,7 +1,10 @@
 // manage our shopping lists, access it from recipe area
+import { EventEmitter } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 
 export class ShoppingListService {
+
+  ingredientChanged = new EventEmitter<Ingredient[]>();
   // add ingredinets:
   private ingredients: Ingredient[] = [
     new Ingredient("Apples", 5),
@@ -16,7 +19,10 @@ export class ShoppingListService {
 
   // addIngredient method
   addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
+    this.ingredients.push(ingredient); //after this, we are adding new ingredinet to main ingrediet arr
+    // but in getIngredient method we are passing a copy of ingredient into service
+    // SO we need to create ingredientChanged prop with new evenT:
+    this.ingredientChanged.emit(this.ingredients.slice()); //then add it in shopping list component
   }
 
 }
