@@ -10,6 +10,7 @@ export class RecipeItemComponent implements OnInit {
 
   // bind this property from outside
   @Input() recipe: Recipe;
+  @Input() index: number;
   // it contains no information so ========> <void>
   // @Output() recipeSelected = new EventEmitter<void>(); don't want to emit but:
   // want to call some methods in service, which will then transfert this data
