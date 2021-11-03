@@ -13,8 +13,8 @@
         <!-- <li><a href="#" (click)="onSelect($event)">Recipes</a></li>  OR:-->
         <!-- <li><a href="#" (click)="onSelect('recipe')">Recipes</a></li>
         <li><a href="#" (click)="onSelect('shopping-list')">Shopping List</a></li> UPDATE both ^ after adding routes -->
-        <li><a [routerLink]="['/recipes']">Recipes</a></li> <!--or:  routerLink="/recipes"-->
-        <li><a [routerLink]="['/shopping-list']">Shopping List</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/recipes']">Recipes</a></li> <!--or:  routerLink="/recipes"-->
+        <li routerLinkActive="active"><a [routerLink]="['/shopping-list']">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li class="dropdown open"> open will keep dropdown open -->
