@@ -43,6 +43,11 @@ export class RecipeService {
     // So with this ^ we get a copy of recipes arr for using outside
   }
 
+  // loading single recipe by id:
+  getRecipeById (index: number) {
+    return this.recipes[index];
+  }
+
   recipeSelectedMethod(recipe) {
     this.recipeSelected.emit(recipe);
   }
@@ -51,4 +56,5 @@ export class RecipeService {
     // need to access shopping list service
     this.shoppingListServiceProp.addIngredients(ingredients);
   }
+
 }

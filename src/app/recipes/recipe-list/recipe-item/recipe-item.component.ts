@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../../recipe.model';
-import { RecipeService } from '../../recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -16,13 +15,13 @@ export class RecipeItemComponent implements OnInit {
   // want to call some methods in service, which will then transfert this data
 
   // Inject recipe service:
-  constructor(private recipeServiceProp: RecipeService) { }
+  // constructor(private recipeServiceProp: RecipeService) { }
 
   ngOnInit(): void {
   }
 
-  onSelected() {
-    // this.recipeSelected.emit();
-    this.recipeServiceProp.recipeSelectedMethod(this.recipe);
-  }
+  // onSelected() {
+  //   // this.recipeSelected.emit();
+  //   this.recipeServiceProp.recipeSelectedMethod(this.recipe);
+  // }
 }
