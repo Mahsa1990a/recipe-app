@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +10,9 @@ export class HeaderComponent {
   collapsed = true;
 
   // want to emit my own event and make it listenable from app component:
-  @Output() featureSelected = new EventEmitter<string>();
+  // @Output() featureSelected = new EventEmitter<string>(); Dont need it after adding routes
 
-  onSelect(feature: string) {
-    this.featureSelected.emit(feature);
-  }
+  // onSelect(feature: string) {
+  //   this.featureSelected.emit(feature);
+  // }   Dont need it after adding routes
 };
