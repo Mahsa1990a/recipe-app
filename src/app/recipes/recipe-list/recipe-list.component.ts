@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from "../../recipes/recipe.model";
 import { RecipeService } from '../recipe.service';
 
@@ -20,7 +21,10 @@ export class RecipeListComponent implements OnInit {
   ];
 
   // we need to inject our service:
-  constructor(private recipeServiceProp: RecipeService) { }
+  constructor(private recipeServiceProp: RecipeService,
+    private router: Router,
+    private route: ActivatedRoute )
+  { }
 
   ngOnInit(): void {
     this.recipes = this.recipeServiceProp.getRecipes();//get copy of recipe arr from service
@@ -29,5 +33,11 @@ export class RecipeListComponent implements OnInit {
   // onRecipeSelected(recipe: Recipe) {
   //   this.recipeWasSelected.emit(recipe);
   // }
+
+  onNewRecipe() {
+    // to target the path I want to go to:(we're already in /recipes here, so add new as relative route)
+    // need to inform router about current route by adding relativeTo
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
 
 }
