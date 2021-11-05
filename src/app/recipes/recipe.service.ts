@@ -1,6 +1,8 @@
 // managing recipes and datas
 
 import { EventEmitter, Injectable } from '@angular/core';
+import { Subject } from "rxjs";
+
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shoppingList.service';
 import { Recipe } from "./recipe.model";
@@ -10,7 +12,8 @@ import { Recipe } from "./recipe.model";
 
 export class RecipeService {
 
-  recipeSelected = new EventEmitter<Recipe>()
+  // recipeSelected = new EventEmitter<Recipe>()
+  // recipeSelected = new Subject<Recipe>()
 
   // the type is Recipe Model
   private recipes: Recipe[] = [
@@ -48,9 +51,10 @@ export class RecipeService {
     return this.recipes[index];
   }
 
-  recipeSelectedMethod(recipe) {
-    this.recipeSelected.emit(recipe);
-  }
+  // recipeSelectedMethod(recipe) {
+  //   // this.recipeSelected.emit(recipe);
+  //   this.recipeSelected.next(recipe);
+  // }
 
   addIngredinetsToShoppingList(ingredients: Ingredient[]) {
     // need to access shopping list service

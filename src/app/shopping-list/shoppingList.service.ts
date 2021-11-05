@@ -1,10 +1,16 @@
 // manage our shopping lists, access it from recipe area
 import { EventEmitter } from '@angular/core';
+//1. Setup subject:
+import { Subject } from "rxjs";
+
 import { Ingredient } from '../shared/ingredient.model';
 
 export class ShoppingListService {
 
-  ingredientChanged = new EventEmitter<Ingredient[]>();
+  // ingredientChanged = new EventEmitter<Ingredient[]>();   2. Replace EventEmitter with Subject
+  ingredientChanged = new Subject<Ingredient[]>();
+
+
   // add ingredinets:
   private ingredients: Ingredient[] = [
     new Ingredient("Apples", 5),
@@ -22,7 +28,8 @@ export class ShoppingListService {
     this.ingredients.push(ingredient); //after this, we are adding new ingredinet to main ingrediet arr
     // but in getIngredient method we are passing a copy of ingredient into service
     // SO we need to create ingredientChanged prop with new evenT:
-    this.ingredientChanged.emit(this.ingredients.slice()); //then add it in shopping list component
+    // this.ingredientChanged.emit(this.ingredients.slice()); //then add it in shopping list component
+    this.ingredientChanged.next(this.ingredients.slice()); // 3. replace emit with next
   }
 
   // let's create this: for recipe service
@@ -32,7 +39,9 @@ export class ShoppingListService {
     // }         OR:
     // speared operator: turns an arr of element into a list of elements
     this.ingredients.push(...ingredients);
-    this.ingredientChanged.emit(this.ingredients.slice());
+
+    // this.ingredientChanged.emit(this.ingredients.slice());
+    this.ingredientChanged.next(this.ingredients.slice());// 3. replace emit with next
   }
 
 }
