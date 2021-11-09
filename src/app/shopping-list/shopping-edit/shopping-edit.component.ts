@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from '../shoppingList.service';
 
@@ -8,7 +10,7 @@ import { ShoppingListService } from '../shoppingList.service';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   // ViewChild for accessing any element directly in ts
   // nameInput is name of local refrence in html template
@@ -21,9 +23,24 @@ export class ShoppingEditComponent implements OnInit {
   // ingredientAdded = new EventEmitter<{name: string, amount: number}>(); OR we have the seme type definition with Ingredient Model:
   // @Output() ingredientAdded = new EventEmitter<Ingredient>();
 
+  subscription: Subscription;
+  editMode = false;
+  editedItemIndex: number;
+
   constructor(private shoppingListServiceProp: ShoppingListService) { }
 
   ngOnInit(): void {
+    this.subscription = this.shoppingListServiceProp.startedEditing
+      .subscribe(
+        (index: number) => {
+          this.editedItemIndex = index;
+          this.editMode = true;
+        }
+      );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
   }
 
   onAddItem(form: NgForm) {

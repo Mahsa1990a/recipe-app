@@ -9,7 +9,7 @@ export class ShoppingListService {
 
   // ingredientChanged = new EventEmitter<Ingredient[]>();   2. Replace EventEmitter with Subject
   ingredientChanged = new Subject<Ingredient[]>();
-
+  startedEditing = new Subject<number>();
 
   // add ingredinets:
   private ingredients: Ingredient[] = [
