@@ -23,6 +23,10 @@ export class ShoppingListService {
     return this.ingredients.slice(); //return a copy of ingredients arr
   }
 
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
+
   // addIngredient method
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient); //after this, we are adding new ingredinet to main ingrediet arr
