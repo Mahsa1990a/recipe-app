@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from '../shoppingList.service';
 
@@ -11,9 +12,8 @@ export class ShoppingEditComponent implements OnInit {
 
   // ViewChild for accessing any element directly in ts
   // nameInput is name of local refrence in html template
-  @ViewChild('nameInput', { static: false }) nameInputRef: ElementRef;
-  @ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
-
+  // @ViewChild('nameInput', { static: false }) nameInputRef: ElementRef;
+  // @ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
 
   //now we want to emit a new event where I pass data to the parent(shopping-list)
   //which manages my arr of ingridents:
@@ -26,17 +26,24 @@ export class ShoppingEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddItem() {
+  onAddItem(form: NgForm) {
     // console.log("Added")
-    const ingName = this.nameInputRef.nativeElement.value;
+    // const ingName = this.nameInputRef.nativeElement.value;
     // console.log("ingName", ingName)
-    const ingAmount = this.amountInputRef.nativeElement.value;
+    // const ingAmount = this.amountInputRef.nativeElement.value;
     // console.log("ingAmount", ingAmount)
-    const newIngredient = new Ingredient(ingName, ingAmount);
-    // console.log("newIngredient", newIngredient) is working
+
+    // const newIngredient = new Ingredient(ingName, ingAmount);
+
+    const value = form.value;
+    const newIngredient = new Ingredient(value.name, value.amount);
 
     // this.ingredientAdded.emit(newIngredient); UPDATE:
     this.shoppingListServiceProp.addIngredient(newIngredient); //it does not show added ingredient
   }
 
 }
+
+//219. create form with TD:
+// add (ngSubmit)="onAddItem(f)" to form to submit the form and #f="ngForm" to access the form
+// in ts: get the value and add to ingredients
