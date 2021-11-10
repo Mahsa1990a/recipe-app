@@ -36,10 +36,13 @@
             [disabled]="!f.valid"
             >{{ editMode ? "Edit" : 'Add' }}
           </button>
+          <!--ngIf => Only display the button if we are on edit mode: -->
           <button
             type="button"
             class="btn btn-danger"
-            style="margin-right: 5px;">Delete
+            style="margin-right: 5px;"
+            (click)="onDelete()"
+            *ngIf="editMode">Delete
           </button>
           <button
             type="button"
