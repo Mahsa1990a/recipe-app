@@ -1,3 +1,4 @@
+import { formatCurrency } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
@@ -46,10 +47,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       );
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe()
-  }
-
   onSubmit(form: NgForm) {
     // console.log("Added")
     // const ingName = this.nameInputRef.nativeElement.value;
@@ -71,6 +68,15 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     // to reset afte add or delete:
     this.editMode = false; //we should make editMode false first then:
     form.reset();
+  }
+
+  onClear() {
+    this.shoppingListFrom.reset();
+    this.editMode = false;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
   }
 
 }
