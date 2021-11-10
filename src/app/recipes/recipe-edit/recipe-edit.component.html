@@ -58,13 +58,17 @@
       </div>
 
       <div class="row">
-        <div class="col-xs-12">
-          <div class="row">
+        <div class="col-xs-12" formArrayName="ingredientss">
+          <div
+            class="row"
+            *ngFor="let ingredientCntrl of controls; let i = index"
+            [formGroupName]='i'>
             <div class="col-xs-8">
               <input
                 rows="6"
                 class="form-control"
                 type="text"
+                formControlName="name"
               >
             </div>
             <div class="col-xs-2">
@@ -72,6 +76,7 @@
                 rows="6"
                 class="form-control"
                 type="number"
+                formControlName="amount"
               >
             </div>
             <div class="col-xs-2">
