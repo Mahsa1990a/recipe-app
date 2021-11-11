@@ -7,7 +7,7 @@ import { RecipeService } from './recipe.service';
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css'],
   // putting service here and use it everywhere with recipe components
-  providers: [RecipeService]
+  // providers: [RecipeService] MOVE it to app.module
 })
 export class RecipesComponent implements OnInit {
 

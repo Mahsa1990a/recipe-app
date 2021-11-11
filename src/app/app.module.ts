@@ -16,6 +16,7 @@ import { ShoppingListService } from './shopping-list/shoppingList.service';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeService } from './recipes/recipe.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService],
+  // with adding RecipeService => we have an instance of service all the time available as long as our app is running
+  providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
