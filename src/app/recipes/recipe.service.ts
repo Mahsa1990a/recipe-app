@@ -1,7 +1,7 @@
 // managing recipes and datas
 
 import { EventEmitter, Injectable } from '@angular/core';
-import { Subject } from "rxjs";
+import { Subject } from "rxjs/Subject";
 
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shoppingList.service';
@@ -11,6 +11,8 @@ import { Recipe } from "./recipe.model";
 @Injectable()
 
 export class RecipeService {
+
+  recipesChanged = new Subject<Recipe[]>();
 
   // recipeSelected = new EventEmitter<Recipe>()
   // recipeSelected = new Subject<Recipe>()
@@ -61,4 +63,12 @@ export class RecipeService {
     this.shoppingListServiceProp.addIngredients(ingredients);
   }
 
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 }
