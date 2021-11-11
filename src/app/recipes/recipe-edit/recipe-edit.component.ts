@@ -66,7 +66,8 @@ export class RecipeEditComponent implements OnInit {
 
   // the X buttun:
   onDeleteIngredient(index: number) {
-    (<FormArray>this.recipeForm.get('ingredientss')).removeAt(index);
+    (<FormArray>this.recipeForm.get('ingredientss')).removeAt(index); //or:
+    // (<FormArray>this.recipeForm.get('ingredients')).clear();
   }
 
   onAddIngredient() {
