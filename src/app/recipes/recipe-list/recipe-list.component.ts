@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import { Recipe } from "../../recipes/recipe.model";
 import { RecipeService } from '../recipe.service';
 
@@ -8,7 +9,7 @@ import { RecipeService } from '../recipe.service';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent implements OnInit, OnDestroy {
 
   // @Output() recipeWasSelected = new EventEmitter<Recipe>();
 
@@ -19,6 +20,7 @@ export class RecipeListComponent implements OnInit {
     // new Recipe("Anotherrrrrr Test Recipe", "This is TEST", "https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg")
     // we want to get recipes from service:
   ];
+  subscription: Subscription;
 
   // we need to inject our service:
   constructor(private recipeServiceProp: RecipeService,
@@ -27,7 +29,7 @@ export class RecipeListComponent implements OnInit {
   { }
 
   ngOnInit(): void {
-    this.recipeServiceProp.recipesChanged
+    this.subscription = this.recipeServiceProp.recipesChanged
       .subscribe(
         (recipes: Recipe[]) => {
           this.recipes = recipes;
@@ -44,6 +46,10 @@ export class RecipeListComponent implements OnInit {
     // to target the path I want to go to:(we're already in /recipes here, so add new as relative route)
     // need to inform router about current route by adding relativeTo
     this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
